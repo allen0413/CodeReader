@@ -257,7 +257,6 @@ namespace WatsonCodeReader
                                 break;
                         }
                         Thread.Sleep(3000);
-                        // Here
                     }
                     previousIdx = form.tripleCollectIdx;
 
