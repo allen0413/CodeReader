@@ -29,17 +29,15 @@ namespace WatsonCodeReader
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.comboBoxDeviceList = new System.Windows.Forms.ComboBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.buttonApplySetting = new System.Windows.Forms.Button();
             this.buttonGetSetting = new System.Windows.Forms.Button();
@@ -57,17 +55,16 @@ namespace WatsonCodeReader
             this.buttonEndGrab = new System.Windows.Forms.Button();
             this.buttonStartGrab = new System.Windows.Forms.Button();
             this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.buttonSeeImgList = new System.Windows.Forms.Button();
+            this.buttonContinue = new System.Windows.Forms.Button();
             this.Number = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ReadTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.APPCostTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BarType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BarcodeContent = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.X座標 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Y座標 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.X = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Y = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CodeScore = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
@@ -75,12 +72,15 @@ namespace WatsonCodeReader
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBox1.Location = new System.Drawing.Point(25, 27);
+            this.pictureBox1.Location = new System.Drawing.Point(689, 14);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(587, 440);
+            this.pictureBox1.Size = new System.Drawing.Size(967, 662);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -89,38 +89,13 @@ namespace WatsonCodeReader
             // 
             this.comboBoxDeviceList.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBoxDeviceList.FormattingEnabled = true;
-            this.comboBoxDeviceList.Location = new System.Drawing.Point(128, 35);
+            this.comboBoxDeviceList.Location = new System.Drawing.Point(160, 35);
             this.comboBoxDeviceList.Name = "comboBoxDeviceList";
-            this.comboBoxDeviceList.Size = new System.Drawing.Size(364, 32);
+            this.comboBoxDeviceList.Size = new System.Drawing.Size(470, 32);
             this.comboBoxDeviceList.TabIndex = 3;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.pictureBox2.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBox2.Location = new System.Drawing.Point(639, 27);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(592, 440);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 4;
-            this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox3.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.pictureBox3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBox3.Location = new System.Drawing.Point(1253, 27);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(592, 440);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox3.TabIndex = 5;
-            this.pictureBox3.TabStop = false;
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox1.Controls.Add(this.buttonApplySetting);
             this.groupBox1.Controls.Add(this.buttonGetSetting);
             this.groupBox1.Controls.Add(this.label3);
@@ -134,9 +109,9 @@ namespace WatsonCodeReader
             this.groupBox1.Controls.Add(this.buttonFindDevice);
             this.groupBox1.Controls.Add(this.comboBoxDeviceList);
             this.groupBox1.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.groupBox1.Location = new System.Drawing.Point(44, 488);
+            this.groupBox1.Location = new System.Drawing.Point(17, 14);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(514, 251);
+            this.groupBox1.Size = new System.Drawing.Size(651, 213);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "相機設定";
@@ -144,22 +119,22 @@ namespace WatsonCodeReader
             // buttonApplySetting
             // 
             this.buttonApplySetting.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.buttonApplySetting.Location = new System.Drawing.Point(341, 205);
+            this.buttonApplySetting.Location = new System.Drawing.Point(464, 147);
             this.buttonApplySetting.Name = "buttonApplySetting";
-            this.buttonApplySetting.Size = new System.Drawing.Size(120, 30);
+            this.buttonApplySetting.Size = new System.Drawing.Size(150, 46);
             this.buttonApplySetting.TabIndex = 14;
-            this.buttonApplySetting.Text = "應用數據";
+            this.buttonApplySetting.Text = "設置參數";
             this.buttonApplySetting.UseVisualStyleBackColor = true;
             this.buttonApplySetting.Click += new System.EventHandler(this.buttonApplySetting_Click);
             // 
             // buttonGetSetting
             // 
             this.buttonGetSetting.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.buttonGetSetting.Location = new System.Drawing.Point(215, 205);
+            this.buttonGetSetting.Location = new System.Drawing.Point(464, 84);
             this.buttonGetSetting.Name = "buttonGetSetting";
-            this.buttonGetSetting.Size = new System.Drawing.Size(120, 30);
+            this.buttonGetSetting.Size = new System.Drawing.Size(150, 46);
             this.buttonGetSetting.TabIndex = 13;
-            this.buttonGetSetting.Text = "載入數據";
+            this.buttonGetSetting.Text = "取得參數";
             this.buttonGetSetting.UseVisualStyleBackColor = true;
             this.buttonGetSetting.Click += new System.EventHandler(this.buttonGetSetting_Click);
             // 
@@ -167,7 +142,7 @@ namespace WatsonCodeReader
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label3.Location = new System.Drawing.Point(211, 171);
+            this.label3.Location = new System.Drawing.Point(223, 129);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(48, 24);
             this.label3.TabIndex = 12;
@@ -177,7 +152,7 @@ namespace WatsonCodeReader
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label2.Location = new System.Drawing.Point(211, 130);
+            this.label2.Location = new System.Drawing.Point(223, 171);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(48, 24);
             this.label2.TabIndex = 11;
@@ -187,7 +162,7 @@ namespace WatsonCodeReader
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label1.Location = new System.Drawing.Point(211, 89);
+            this.label1.Location = new System.Drawing.Point(223, 87);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(48, 24);
             this.label1.TabIndex = 10;
@@ -198,9 +173,9 @@ namespace WatsonCodeReader
             this.tbFrameRate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbFrameRate.Enabled = false;
             this.tbFrameRate.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbFrameRate.Location = new System.Drawing.Point(267, 170);
+            this.tbFrameRate.Location = new System.Drawing.Point(279, 127);
             this.tbFrameRate.Name = "tbFrameRate";
-            this.tbFrameRate.Size = new System.Drawing.Size(194, 29);
+            this.tbFrameRate.Size = new System.Drawing.Size(142, 29);
             this.tbFrameRate.TabIndex = 9;
             // 
             // tbGain
@@ -208,9 +183,9 @@ namespace WatsonCodeReader
             this.tbGain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbGain.Enabled = false;
             this.tbGain.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbGain.Location = new System.Drawing.Point(267, 129);
+            this.tbGain.Location = new System.Drawing.Point(279, 170);
             this.tbGain.Name = "tbGain";
-            this.tbGain.Size = new System.Drawing.Size(194, 29);
+            this.tbGain.Size = new System.Drawing.Size(142, 29);
             this.tbGain.TabIndex = 8;
             // 
             // tbExposure
@@ -218,17 +193,17 @@ namespace WatsonCodeReader
             this.tbExposure.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbExposure.Enabled = false;
             this.tbExposure.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbExposure.Location = new System.Drawing.Point(267, 88);
+            this.tbExposure.Location = new System.Drawing.Point(279, 84);
             this.tbExposure.Name = "tbExposure";
-            this.tbExposure.Size = new System.Drawing.Size(194, 29);
+            this.tbExposure.Size = new System.Drawing.Size(142, 29);
             this.tbExposure.TabIndex = 7;
             // 
             // buttonCloseDevice
             // 
             this.buttonCloseDevice.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.buttonCloseDevice.Location = new System.Drawing.Point(34, 171);
+            this.buttonCloseDevice.Location = new System.Drawing.Point(25, 147);
             this.buttonCloseDevice.Name = "buttonCloseDevice";
-            this.buttonCloseDevice.Size = new System.Drawing.Size(150, 55);
+            this.buttonCloseDevice.Size = new System.Drawing.Size(171, 46);
             this.buttonCloseDevice.TabIndex = 6;
             this.buttonCloseDevice.Text = "關閉相機";
             this.buttonCloseDevice.UseVisualStyleBackColor = true;
@@ -237,9 +212,9 @@ namespace WatsonCodeReader
             // buttonOpenDevice
             // 
             this.buttonOpenDevice.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.buttonOpenDevice.Location = new System.Drawing.Point(34, 98);
+            this.buttonOpenDevice.Location = new System.Drawing.Point(25, 84);
             this.buttonOpenDevice.Name = "buttonOpenDevice";
-            this.buttonOpenDevice.Size = new System.Drawing.Size(150, 55);
+            this.buttonOpenDevice.Size = new System.Drawing.Size(171, 46);
             this.buttonOpenDevice.TabIndex = 5;
             this.buttonOpenDevice.Text = "開啟相機";
             this.buttonOpenDevice.UseVisualStyleBackColor = true;
@@ -250,7 +225,7 @@ namespace WatsonCodeReader
             this.buttonFindDevice.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.buttonFindDevice.Location = new System.Drawing.Point(25, 34);
             this.buttonFindDevice.Name = "buttonFindDevice";
-            this.buttonFindDevice.Size = new System.Drawing.Size(87, 33);
+            this.buttonFindDevice.Size = new System.Drawing.Size(129, 33);
             this.buttonFindDevice.TabIndex = 4;
             this.buttonFindDevice.Text = "尋找相機";
             this.buttonFindDevice.UseVisualStyleBackColor = true;
@@ -258,14 +233,14 @@ namespace WatsonCodeReader
             // 
             // groupBox2
             // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox2.Controls.Add(this.buttonContinue);
             this.groupBox2.Controls.Add(this.checkedListBox);
             this.groupBox2.Controls.Add(this.buttonEndGrab);
             this.groupBox2.Controls.Add(this.buttonStartGrab);
             this.groupBox2.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.groupBox2.Location = new System.Drawing.Point(44, 759);
+            this.groupBox2.Location = new System.Drawing.Point(17, 233);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(514, 190);
+            this.groupBox2.Size = new System.Drawing.Size(651, 190);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "條碼辨識";
@@ -275,12 +250,12 @@ namespace WatsonCodeReader
             this.checkedListBox.BackColor = System.Drawing.SystemColors.Control;
             this.checkedListBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.checkedListBox.CausesValidation = false;
-            this.checkedListBox.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkedListBox.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.checkedListBox.FormattingEnabled = true;
-            this.checkedListBox.Location = new System.Drawing.Point(290, 56);
+            this.checkedListBox.Location = new System.Drawing.Point(312, 34);
             this.checkedListBox.Name = "checkedListBox";
             this.checkedListBox.SelectionMode = System.Windows.Forms.SelectionMode.None;
-            this.checkedListBox.Size = new System.Drawing.Size(191, 102);
+            this.checkedListBox.Size = new System.Drawing.Size(177, 144);
             this.checkedListBox.TabIndex = 7;
             this.checkedListBox.UseCompatibleTextRendering = true;
             // 
@@ -289,7 +264,7 @@ namespace WatsonCodeReader
             this.buttonEndGrab.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.buttonEndGrab.Location = new System.Drawing.Point(25, 112);
             this.buttonEndGrab.Name = "buttonEndGrab";
-            this.buttonEndGrab.Size = new System.Drawing.Size(241, 50);
+            this.buttonEndGrab.Size = new System.Drawing.Size(255, 50);
             this.buttonEndGrab.TabIndex = 6;
             this.buttonEndGrab.Text = "結束辨識";
             this.buttonEndGrab.UseVisualStyleBackColor = true;
@@ -300,7 +275,7 @@ namespace WatsonCodeReader
             this.buttonStartGrab.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.buttonStartGrab.Location = new System.Drawing.Point(25, 47);
             this.buttonStartGrab.Name = "buttonStartGrab";
-            this.buttonStartGrab.Size = new System.Drawing.Size(241, 50);
+            this.buttonStartGrab.Size = new System.Drawing.Size(255, 50);
             this.buttonStartGrab.TabIndex = 5;
             this.buttonStartGrab.Text = "開始辨識";
             this.buttonStartGrab.UseVisualStyleBackColor = true;
@@ -312,72 +287,96 @@ namespace WatsonCodeReader
             this.dataGridView.AllowUserToDeleteRows = false;
             this.dataGridView.AllowUserToResizeColumns = false;
             this.dataGridView.AllowUserToResizeRows = false;
-            this.dataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            this.dataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.dataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView.CausesValidation = false;
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle15;
-            this.dataGridView.ColumnHeadersHeight = 50;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridView.ColumnHeadersHeight = 40;
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Number,
             this.ReadTime,
-            this.APPCostTime,
             this.BarType,
             this.BarcodeContent,
-            this.X座標,
-            this.Y座標,
+            this.X,
+            this.Y,
             this.CodeScore});
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView.DefaultCellStyle = dataGridViewCellStyle19;
-            this.dataGridView.Enabled = false;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView.DefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView.EnableHeadersVisualStyles = false;
-            this.dataGridView.Location = new System.Drawing.Point(587, 503);
+            this.dataGridView.Location = new System.Drawing.Point(17, 445);
             this.dataGridView.MultiSelect = false;
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.ReadOnly = true;
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView.RowHeadersVisible = false;
             this.dataGridView.RowHeadersWidth = 50;
             this.dataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle21.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.dataGridView.RowsDefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.dataGridView.RowsDefaultCellStyle = dataGridViewCellStyle7;
             this.dataGridView.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridView.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.dataGridView.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.dataGridView.RowTemplate.Height = 100;
             this.dataGridView.RowTemplate.ReadOnly = true;
             this.dataGridView.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dataGridView.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView.Size = new System.Drawing.Size(1243, 414);
+            this.dataGridView.Size = new System.Drawing.Size(651, 229);
             this.dataGridView.TabIndex = 8;
+            // 
+            // buttonSeeImgList
+            // 
+            this.buttonSeeImgList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonSeeImgList.BackColor = System.Drawing.SystemColors.Control;
+            this.buttonSeeImgList.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.buttonSeeImgList.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.buttonSeeImgList.Location = new System.Drawing.Point(1527, 637);
+            this.buttonSeeImgList.Name = "buttonSeeImgList";
+            this.buttonSeeImgList.Size = new System.Drawing.Size(125, 35);
+            this.buttonSeeImgList.TabIndex = 9;
+            this.buttonSeeImgList.Text = "查看聚焦圖";
+            this.buttonSeeImgList.UseVisualStyleBackColor = false;
+            this.buttonSeeImgList.Click += new System.EventHandler(this.buttonSeeImgList_Click);
+            // 
+            // buttonContinue
+            // 
+            this.buttonContinue.Location = new System.Drawing.Point(497, 60);
+            this.buttonContinue.Name = "buttonContinue";
+            this.buttonContinue.Size = new System.Drawing.Size(143, 90);
+            this.buttonContinue.TabIndex = 8;
+            this.buttonContinue.Text = "連續辨識";
+            this.buttonContinue.UseVisualStyleBackColor = true;
+            this.buttonContinue.Click += new System.EventHandler(this.buttonContinue_Click);
             // 
             // Number
             // 
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomCenter;
-            this.Number.DefaultCellStyle = dataGridViewCellStyle16;
-            this.Number.FillWeight = 40F;
-            this.Number.Frozen = true;
+            this.Number.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomCenter;
+            this.Number.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Number.FillWeight = 114.4637F;
             this.Number.HeaderText = "編號";
             this.Number.Name = "Number";
             this.Number.ReadOnly = true;
@@ -386,91 +385,80 @@ namespace WatsonCodeReader
             // 
             // ReadTime
             // 
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.ReadTime.DefaultCellStyle = dataGridViewCellStyle17;
-            this.ReadTime.FillWeight = 200F;
-            this.ReadTime.Frozen = true;
+            this.ReadTime.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.ReadTime.DefaultCellStyle = dataGridViewCellStyle3;
+            this.ReadTime.FillWeight = 190.863F;
             this.ReadTime.HeaderText = "辨識時間";
             this.ReadTime.MinimumWidth = 10;
             this.ReadTime.Name = "ReadTime";
             this.ReadTime.ReadOnly = true;
             this.ReadTime.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.ReadTime.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ReadTime.Width = 300;
-            // 
-            // APPCostTime
-            // 
-            this.APPCostTime.Frozen = true;
-            this.APPCostTime.HeaderText = "耗時(ms)";
-            this.APPCostTime.MinimumWidth = 10;
-            this.APPCostTime.Name = "APPCostTime";
-            this.APPCostTime.ReadOnly = true;
-            this.APPCostTime.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.APPCostTime.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.APPCostTime.Width = 150;
             // 
             // BarType
             // 
-            this.BarType.Frozen = true;
+            this.BarType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.BarType.FillWeight = 134.0068F;
             this.BarType.HeaderText = "碼制";
             this.BarType.MinimumWidth = 10;
             this.BarType.Name = "BarType";
             this.BarType.ReadOnly = true;
             this.BarType.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.BarType.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.BarType.Width = 120;
             // 
             // BarcodeContent
             // 
-            this.BarcodeContent.FillWeight = 300F;
-            this.BarcodeContent.Frozen = true;
+            this.BarcodeContent.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.BarcodeContent.FillWeight = 255.885F;
             this.BarcodeContent.HeaderText = "碼內容";
             this.BarcodeContent.MinimumWidth = 50;
             this.BarcodeContent.Name = "BarcodeContent";
             this.BarcodeContent.ReadOnly = true;
             this.BarcodeContent.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.BarcodeContent.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.BarcodeContent.Width = 250;
             // 
-            // X座標
+            // X
             // 
-            this.X座標.Frozen = true;
-            this.X座標.HeaderText = "X座標";
-            this.X座標.Name = "X座標";
-            this.X座標.ReadOnly = true;
+            this.X.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.X.FillWeight = 85.295F;
+            this.X.HeaderText = "X";
+            this.X.Name = "X";
+            this.X.ReadOnly = true;
+            this.X.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
-            // Y座標
+            // Y
             // 
-            this.Y座標.Frozen = true;
-            this.Y座標.HeaderText = "Y座標";
-            this.Y座標.Name = "Y座標";
-            this.Y座標.ReadOnly = true;
+            this.Y.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Y.FillWeight = 85.295F;
+            this.Y.HeaderText = "Y";
+            this.Y.Name = "Y";
+            this.Y.ReadOnly = true;
+            this.Y.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // CodeScore
             // 
-            this.CodeScore.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.CodeScore.DefaultCellStyle = dataGridViewCellStyle18;
-            this.CodeScore.Frozen = true;
-            this.CodeScore.HeaderText = "讀碼評分";
+            this.CodeScore.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.CodeScore.DefaultCellStyle = dataGridViewCellStyle4;
+            this.CodeScore.FillWeight = 74.19159F;
+            this.CodeScore.HeaderText = "評分";
             this.CodeScore.MinimumWidth = 10;
             this.CodeScore.Name = "CodeScore";
             this.CodeScore.ReadOnly = true;
             this.CodeScore.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.CodeScore.Width = 200;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1871, 968);
+            this.ClientSize = new System.Drawing.Size(1668, 686);
+            this.Controls.Add(this.buttonSeeImgList);
             this.Controls.Add(this.dataGridView);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -478,8 +466,6 @@ namespace WatsonCodeReader
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -492,8 +478,6 @@ namespace WatsonCodeReader
 
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ComboBox comboBoxDeviceList;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button buttonCloseDevice;
         private System.Windows.Forms.Button buttonOpenDevice;
@@ -509,16 +493,17 @@ namespace WatsonCodeReader
         private System.Windows.Forms.Button buttonStartGrab;
         private System.Windows.Forms.CheckedListBox checkedListBox;
         private System.Windows.Forms.DataGridView dataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Number;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ReadTime;
-        private System.Windows.Forms.DataGridViewTextBoxColumn APPCostTime;
-        private System.Windows.Forms.DataGridViewTextBoxColumn BarType;
-        private System.Windows.Forms.DataGridViewTextBoxColumn BarcodeContent;
-        private System.Windows.Forms.DataGridViewTextBoxColumn X座標;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Y座標;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CodeScore;
         private System.Windows.Forms.Button buttonApplySetting;
         private System.Windows.Forms.Button buttonGetSetting;
+        private System.Windows.Forms.Button buttonSeeImgList;
+        private System.Windows.Forms.Button buttonContinue;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Number;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ReadTime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BarType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BarcodeContent;
+        private System.Windows.Forms.DataGridViewTextBoxColumn X;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Y;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CodeScore;
     }
 }
 

@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
+using System.Drawing.Text;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
@@ -12,14 +13,20 @@ namespace WatsonCodeReader
 {
     public partial class Form1 : Form
     {
-        MVS mvs;
+        int numberOfFocus = 8;
+        float bright = 1.5f;
+        public int waitTime = 5000;
         int radius = 3;
-        int imgCount = 0;
+
         Bitmap bitmap;
         Graphics gra;
+        List<Image> imgList = new List<Image>();
+        int imgCount = 0;
+        bool continueCapture = false;
+        MVS mvs;
         public bool updating = false;
         public bool m_bGrabbing = false;
-        public int tripleCollectIdx = 0;
+        public int collectIdx = 0;
 
         public Form1()
         {
@@ -27,13 +34,24 @@ namespace WatsonCodeReader
             mvs = new MVS(this, pictureBox1.Width, pictureBox1.Height);
             mvs.DeviceListAcq();
             Control.CheckForIllegalCrossThreadCalls = false;
-
-            pictureBox1.Show();
-            pictureBox2.Show();
-            pictureBox3.Show();
-
             mvs.eventFinished += new MVS.DelegateFinish(UpdateImg);
             buttonFindDevice_Click(null, null);
+            dataGridView.ScrollBars = ScrollBars.None;
+            dataGridView.MouseWheel += new MouseEventHandler(mousewheel);
+            buttonSeeImgList.Enabled = false;
+            pictureBox1.Show();
+        }
+
+        private void mousewheel(object sender, MouseEventArgs e)
+        {
+            if (e.Delta > 0 && dataGridView.FirstDisplayedScrollingRowIndex > 0)
+            {
+                dataGridView.FirstDisplayedScrollingRowIndex--;
+            }
+            else if (e.Delta < 0)
+            {
+                dataGridView.FirstDisplayedScrollingRowIndex++;
+            }
         }
 
         private void buttonFindDevice_Click(object sender, EventArgs e)
@@ -134,13 +152,10 @@ namespace WatsonCodeReader
                 dataGridView.Rows.RemoveAt(0);
             }
             checkedListBox.Items.Clear();
-            checkedListBox.Items.Add("   辨識位置 一");
-            checkedListBox.Items.Add("   辨識位置 二");
-            checkedListBox.Items.Add("   辨識位置 三");
+            for (int i = 0; i < numberOfFocus; i++)
+                checkedListBox.Items.Add(string.Format("   辨識位置 {0}", i + 1));
 
             pictureBox1.Image = null;
-            pictureBox2.Image = null;
-            pictureBox3.Image = null;
 
             // ch:标志位置位true | en:Set position bit true
             m_bGrabbing = true;
@@ -157,6 +172,8 @@ namespace WatsonCodeReader
             SetCtrlWhenStartGrab();
             updating = false;
             imgCount = 0;
+            imgList.Clear();
+            buttonSeeImgList.Enabled = false;
         }
 
         private void SetCtrlWhenStartGrab()
@@ -169,6 +186,7 @@ namespace WatsonCodeReader
         {
             // ch:标志位设为false | en:Set flag bit false
             m_bGrabbing = false;
+            continueCapture = false;
             int ret = mvs.StopGrab();
             // ch:停止采集 | en:Stop Grabbing
             if (ret != 0)
@@ -178,7 +196,7 @@ namespace WatsonCodeReader
 
             // ch:控件操作 | en:Control Operation
             SetCtrlWhenStopGrab();
-            tripleCollectIdx = 0;
+            collectIdx = 0;
         }
 
         private void SetCtrlWhenStopGrab()
@@ -196,6 +214,7 @@ namespace WatsonCodeReader
                 tbGain.Text = para["Gain"].ToString("F1");
                 tbFrameRate.Text = para["AcquisitionFrameRate"].ToString("F1");
             }
+            mvs.GetFocus();
         }
         private void buttonApplySetting_Click(object sender, EventArgs e)
         {
@@ -214,96 +233,92 @@ namespace WatsonCodeReader
         private void UpdateImg(int idx)
         {
             List<BarData> barList = mvs.barDataList;
-            //Graphics gra = this.CreateGraphics();
-
-            if (imgCount == 0)
+            if (continueCapture)
             {
                 bitmap = new Bitmap(mvs.collectedImg);
                 gra = Graphics.FromImage(bitmap);
-            }
-
-            foreach (BarData bar in barList)
-            {
-                if (DecideSameBar(bar))
+                foreach (BarData bar in barList)
                 {
                     DrawCenterPoint(gra, bar);
                     DrawContour(gra, bar);
-                    dataGridView.Rows.Insert(0, WriteRow(bar));
+                    if (DecideSameBar(bar))
+                    {
+                        dataGridView.Rows.Insert(0, WriteRow(bar));
+                    }
                 }
-            }
-            barList.Clear();
-
-            if (imgCount < 10)
-            {
-                imgCount += 1;
+                barList.Clear();
+                pictureBox1.Image = AdjustBrightness(bitmap, bright);
+                pictureBox1.Refresh();
+                updating = false;
             }
             else
             {
-                switch (idx)
+                if (imgCount == 0 && collectIdx == 0)
                 {
-                    case 0:
-                        pictureBox1.Image = AdjustBrightness(bitmap, 2);
-                        pictureBox1.Refresh();
-                        break;
-                    case 1:
-                        pictureBox2.Image = AdjustBrightness(bitmap, 2);
-                        pictureBox2.Refresh();
-                        break;
-                    case 2:
-                        pictureBox3.Image = AdjustBrightness(bitmap, 2);
-                        pictureBox3.Refresh();
-                        break;
+                    bitmap = new Bitmap(mvs.collectedImg);
+                    gra = Graphics.FromImage(bitmap);
                 }
-                
-                if (tripleCollectIdx < 2)
+
+                if (imgCount == 0)
                 {
-                    tripleCollectIdx += 1;
-                    imgCount = 0;
+                    imgList.Add(AdjustBrightness(mvs.collectedImg, bright));
+                }
+
+                foreach (BarData bar in barList)
+                {
+                    if (DecideSameBar(bar))
+                    {
+                        DrawCenterPoint(gra, bar);
+                        DrawContour(gra, bar);
+                        dataGridView.Rows.Insert(0, WriteRow(bar));
+                        DrawWord(gra, bar, dataGridView.Rows.Count);
+                        Application.DoEvents();
+                    }
+                }
+                barList.Clear();
+
+                if (imgCount < 10)
+                {
+                    imgCount += 1;
                 }
                 else
                 {
-                    m_bGrabbing = false;
-                    buttonEndGrab_Click(null, null);
+                    pictureBox1.Image = AdjustBrightness(bitmap, bright);
+                    pictureBox1.Refresh();
+                    checkedListBox.SetItemChecked(collectIdx, true);
+                    if (collectIdx < numberOfFocus - 1)
+                    {
+                        collectIdx += 1;
+                        imgCount = 0;
+                    }
+                    else
+                    {
+                        m_bGrabbing = false;
+                        buttonSeeImgList.Enabled = true;
+                        buttonEndGrab_Click(null, null);
+                    }
                 }
+                updating = false;
             }
-            updating = false;
-            
         }
 
-        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            buttonCloseDevice_Click(sender, e);
-        }
-
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            buttonCloseDevice_Click(sender, e);
-        }
 
         public bool DecideSameBar(BarData bar)
         {
-            if (dataGridView.Rows.Count > 1)
+            if (dataGridView.Rows.Count > 0)
             {
                 foreach (DataGridViewRow row in dataGridView.Rows)
                 {
-                    //double distX = Math.Pow(Convert.ToDouble(bar.centerPoint[0]) - Convert.ToDouble(row.Cells[5].Value), 2);
-                    //double distY = Math.Pow(Convert.ToDouble(bar.centerPoint[1]) - Convert.ToDouble(row.Cells[6].Value), 2);
-                    //double dist = Math.Pow(distX + distY, 0.5);
-                    //if (dist < 60)
-                    //    return false;
-                    if (bar.barCode.ToString() == row.Cells[4].Value.ToString())
+                    double distX = Math.Pow(Convert.ToDouble(bar.centerPoint[0]) - Convert.ToDouble(row.Cells[5].Value), 2);
+                    double distY = Math.Pow(Convert.ToDouble(bar.centerPoint[1]) - Convert.ToDouble(row.Cells[6].Value), 2);
+                    double dist = Math.Pow(distX + distY, 0.5);
+                    if (dist < 50)
+                        return false;
+                    if (bar.barCode.ToString() == row.Cells[3].Value.ToString())
                         return false;
                 }
             }
             return true;
-        }
-
-        private Graphics DrawImg(PictureBox picBox, Image img)
-        {
-            picBox.Image = AdjustBrightness(img, 2);
-            //picBox.Image = img;
-            picBox.Refresh();
-            return picBox.CreateGraphics();
         }
 
         private void DrawCenterPoint(Graphics gra, BarData bar)
@@ -316,6 +331,17 @@ namespace WatsonCodeReader
         {
             Pen pen = new Pen(Color.Blue, 3);
             gra.DrawPolygon(pen, bar.pointList);
+        }
+
+        private void DrawWord(Graphics gra, BarData bar, int idx)
+        {
+            Pen pen = new Pen(Color.Blue, 3);
+            var fontFamily = new FontFamily("Javanese Text");
+            var font = new Font(fontFamily, 100, FontStyle.Regular, GraphicsUnit.Pixel);
+            var solidBrush = new SolidBrush(Color.FromArgb(255, 0, 0, 255));
+
+            gra.TextRenderingHint = TextRenderingHint.AntiAlias;
+            gra.DrawString(idx.ToString(), font, solidBrush, new PointF(bar.centerPoint[0] + 20, bar.centerPoint[1]));
         }
 
         private Bitmap AdjustBrightness(Image image, float brightness)
@@ -357,16 +383,61 @@ namespace WatsonCodeReader
         {
             DataGridViewRow cDataRow = new DataGridViewRow();
             cDataRow.CreateCells(dataGridView);
-            cDataRow.Cells[0].Value = this.dataGridView.Rows.Count;
-            DateTime cDateTime = DateTime.Now;
-            cDataRow.Cells[1].Value = cDateTime.ToString();
-            cDataRow.Cells[2].Value = bar.timeCost.ToString();
-            cDataRow.Cells[3].Value = bar.barType;
-            cDataRow.Cells[4].Value = bar.barCode;
-            cDataRow.Cells[5].Value = bar.centerPoint[0];//PointXSum / 4;
-            cDataRow.Cells[6].Value = bar.centerPoint[1]; //PointYSum / 4;
-            cDataRow.Cells[7].Value = bar.score; //stBcrResultEx2.stBcrInfoEx2[i].nIDRScore.ToString();
+            cDataRow.Cells[0].Value = this.dataGridView.Rows.Count + 1;
+            cDataRow.Cells[1].Value = DateTime.Now.ToString("MM'-'dd' 'HH':'mm':'ss");
+            cDataRow.Cells[2].Value = bar.barType;
+            cDataRow.Cells[3].Value = bar.barCode;
+            cDataRow.Cells[4].Value = bar.centerPoint[0];
+            cDataRow.Cells[5].Value = bar.centerPoint[1];
+            cDataRow.Cells[6].Value = bar.score;
             return cDataRow;
+        }
+
+        private void buttonSeeImgList_Click(object sender, EventArgs e)
+        {
+            if (imgList.Count > 0 && !m_bGrabbing)
+            {
+                ImgListWindow imgListWindow = new ImgListWindow(imgList);
+                imgListWindow.Show();
+            }
+        }
+
+        private void buttonContinue_Click(object sender, EventArgs e)
+        {
+            // 清空读码信息
+            while (dataGridView.Rows.Count != 0)
+            {
+                dataGridView.Rows.RemoveAt(0);
+            }
+            checkedListBox.Items.Clear();
+            pictureBox1.Image = null;
+
+            // ch:标志位置位true | en:Set position bit true
+            m_bGrabbing = true;
+            updating = false;
+            continueCapture = true;
+            collectIdx = 2;
+            int ret = mvs.StartGrab();
+            if (ret != 0)
+            {
+                m_bGrabbing = false;
+                ShowErrorMsg("Start Grabbing Fail!", ret);
+                return;
+            }
+
+            // ch:控件操作 | en:Control Operation
+            SetCtrlWhenStartGrab();
+            buttonSeeImgList.Enabled = false;
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            buttonCloseDevice_Click(sender, e);
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            buttonCloseDevice_Click(sender, e);
         }
     }
 }

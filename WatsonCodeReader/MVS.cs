@@ -24,7 +24,7 @@ namespace WatsonCodeReader
         // 显示
         Point[] stPointList = new Point[4];                 // 条码位置的4个点坐标
         List<int> pictureBoxSize = new List<int>(2);
-        int previousIdx = 0;
+        int previousIdx = -1;
         public delegate void DelegateFinish(int idx);
         public event DelegateFinish eventFinished;
         public Image collectedImg;
@@ -132,12 +132,23 @@ namespace WatsonCodeReader
         private List<int> SetFocus(int focusIndex)
         {
             List<int> results = new List<int>();
-            int SetFocusReturn1 = m_cMyDevice.MV_CODEREADER_SetEnumValue_NET("FocusPosition", (uint)focusIndex);
+            int SetFocusReturn1 = m_cMyDevice.MV_CODEREADER_SetEnumValue_NET("FocusPosition", (uint)(focusIndex + 1));
             Thread.Sleep(100);
             int SetFocusReturn2 = m_cMyDevice.MV_CODEREADER_SetCommandValue_NET("FocusPositionLoad");
             results.Add(SetFocusReturn1);
             results.Add(SetFocusReturn2);
+            bool test;
+            if (results[0] != 0 || results[1] != 0)
+                test = true;
             return results;
+        }
+
+        public void GetFocus()
+        {
+            MvCodeReader.MV_CODEREADER_INTVALUE_EX intParam = new MvCodeReader.MV_CODEREADER_INTVALUE_EX();
+            MvCodeReader.MV_CODEREADER_ENUMVALUE enumParam = new MvCodeReader.MV_CODEREADER_ENUMVALUE();
+            int ret = m_cMyDevice.MV_CODEREADER_GetEnumValue_NET("FocusPosition", ref enumParam);
+            ret = m_cMyDevice.MV_CODEREADER_GetIntValue_NET("Focus", ref intParam);
         }
 
         public Dictionary<string, float> GetParameters()
@@ -242,23 +253,12 @@ namespace WatsonCodeReader
             {
                 if (!form.updating)
                 {
-                    if (previousIdx != form.tripleCollectIdx)
+                    if (previousIdx != form.collectIdx)
                     {
-                        switch (form.tripleCollectIdx)
-                        {
-                            case 0:
-                                SetFocus(0);
-                                break;
-                            case 1:
-                                SetFocus(1);
-                                break;
-                            case 2:
-                                SetFocus(2);
-                                break;
-                        }
-                        Thread.Sleep(3000);
+                        SetFocus(form.collectIdx);
+                        Thread.Sleep(form.waitTime);
                     }
-                    previousIdx = form.tripleCollectIdx;
+                    previousIdx = form.collectIdx;
 
                     nRet = m_cMyDevice.MV_CODEREADER_GetOneFrameTimeoutEx2_NET(ref pData, pstFrameInfoEx2, 1000);
                     if (nRet == MvCodeReader.MV_CODEREADER_OK)
@@ -302,9 +302,9 @@ namespace WatsonCodeReader
                             barDataList.Add(bar);
                         }
                         form.updating = true;
-                        eventFinished(form.tripleCollectIdx);
+                        eventFinished(form.collectIdx);
                     }
-                    Thread.Sleep(10);
+                    Thread.Sleep(5);
                 }
             }
             SetFocus(0);
